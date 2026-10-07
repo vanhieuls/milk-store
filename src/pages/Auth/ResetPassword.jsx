@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Form, Input, message, Alert } from 'antd';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import axios from 'axios';
+import AuthService from '../../services/Auth/AuthServices';
 
 function ResetPassword() {
     const navigate = useNavigate();
@@ -48,19 +48,11 @@ function ResetPassword() {
             setError('');
             console.log("Submitting reset password form with token:", token);
 
-            // Sử dụng trực tiếp axios để debug
-            const response = await axios.post(
-                'https://milkshop-hpd4e9ewcsbdevfx.eastasia-01.azurewebsites.net/api/Auth/reset-password',
-                {
-                    token: token,
-                    newPassword: values.newPassword,
-                    confirmPassword: values.confirmPassword
-                },
-                {
-                    headers: {
-                        'Content-Type': 'application/json'
-                    }
-                }
+            // Sử dụng AuthService để reset password
+            const response = await AuthService.resetPassword(
+                token,
+                values.newPassword,
+                values.confirmPassword
             );
 
             console.log("Direct API response:", response);

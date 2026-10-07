@@ -3,40 +3,40 @@ import { FaFacebookF, FaPhone, FaShieldAlt, FaMapMarkerAlt } from 'react-icons/f
 import { SiHappycow } from "react-icons/si";
 import { IoMdMail } from "react-icons/io";
 import { MdOutlineCategory, MdInfo, MdSupportAgent } from "react-icons/md";
+import { IoMdFootball } from "react-icons/io";
 import { FaTruckFast } from "react-icons/fa6";
 import GHN from '/src/assets/GHN.webp'
 import EMS from '/src/assets/ems.png'
 import zalo from '/src/assets/zalo.webp'
 import face from '/src/assets/facebook.png'
-
 const Footer = () => {
   return (
     <footer className='relative overflow-hidden bg-gray-800 text-white'>
       {/* Icon HappyCow - góc dưới bên phải, kích thước lớn */}
       <div className='absolute -bottom-8 -left-20 opacity-30'>
-        <SiHappycow className="text-[180px] md:text-[250px] lg:text-[320px] text-blue-200" />
+        <IoMdFootball className="text-[180px] md:text-[250px] lg:text-[320px] text-blue-200" />
       </div>
 
       {/* Main content */}
       <div className='container mx-auto py-4 px-4 relative z-10'>
         <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10'>
-          {/* Danh mục hàng */}
+          {/* Táo bạo */}
           <div className=' p-6 rounded-lg  '>
             <div className='flex items-center mb-5'>
               <MdOutlineCategory className='text-3xl text-blue-400 mr-3' />
               <h3 className='text-xl font-bold text-blue-300'>
-                Danh mục hàng
+                Danh mục
               </h3>
             </div>
             <ul className='space-y-3'>
-              {['Sữa bột', 'Sữa tươi', 'Sữa hạt', 'Thực phẩm bổ sung'].map((item, index) => (
+              {/* {['Giày sân nhân tạo', 'Giày cỏ tự nhiên', 'Giày Futsal', 'Phụ kiện'].map((item, index) => (
                 <li key={index}>
                   <a href='#' className='text-gray-300 hover:text-blue-300 flex items-center'>
                     <span className='w-1.5 h-1.5 bg-blue-400 rounded-full mr-2'></span>
                     {item}
                   </a>
                 </li>
-              ))}
+              ))} */}
             </ul>
           </div>
 
@@ -48,7 +48,7 @@ const Footer = () => {
                 Thông tin
               </h3>
             </div>
-            <ul className='space-y-3'>
+            {/* <ul className='space-y-3'>
               {[
                 { name: 'Hướng dẫn mua hàng', link: '/huong-dan-mua-hang' },
                 { name: 'Hình thức thanh toán', link: '/hinh-thuc-thanh-toan' },
@@ -62,7 +62,7 @@ const Footer = () => {
                   </a>
                 </li>
               ))}
-            </ul>
+            </ul> */}
           </div>
 
           {/* Hỗ trợ khách hàng */}

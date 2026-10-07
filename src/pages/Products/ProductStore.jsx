@@ -26,7 +26,12 @@ export const useProductStore = create((set, get) => ({
     trendId: null,
     searchTerm: '',
     sortBy: 'ProductName',
-    sortAscending: true
+    sortAscending: true,
+    // New filters for the updated API
+    category: '',
+    brand: '',
+    priceMin: '',
+    priceMax: ''
   },
   categories: [
     { id: null, value: 'Tất cả' },
@@ -46,8 +51,8 @@ export const useProductStore = create((set, get) => ({
       const formattedCategories = [
         { id: null, value: 'Tất cả' },
         ...categoriesData.map(category => ({
-          id: category.categoryid,
-          value: category.categoryName
+          id: category.id,
+          value: category.name
         }))
       ];
       
@@ -70,6 +75,21 @@ export const useProductStore = create((set, get) => ({
     try {
       set({ loading: true, error: null });
       
+      const sheetProducts = await ProductService.getSheetDBProducts();
+      if (sheetProducts && sheetProducts.length > 0) {
+        set({
+          products: sheetProducts,
+          loading: false,
+          pagination: {
+            currentPage: 1,
+            pageSize: sheetProducts.length,
+            totalItems: sheetProducts.length,
+            totalPages: 1
+          }
+        });
+        return;
+      }
+
       const { filters, pagination } = get();
       const queryParams = {
         pageNumber: pagination.currentPage,
@@ -78,14 +98,33 @@ export const useProductStore = create((set, get) => ({
       };
 
       const response = await ProductService.getProducts(queryParams);
-      
+
+      // Extract pagination metadata from backend response
+      // Backend returns: "page": { "size": , "number": , "totalElements": , "totalPages": }
+      const pageData = response?.metadata || {};
+
+      // Debug API response
+      console.log('🔍 ProductStore API Response:', {
+        response: response,
+        pageData: pageData,
+        productsCount: response?.products?.length || 0
+      });
+
+      const newPagination = {
+        ...get().pagination,
+        totalItems: pageData.totalCount || 0,
+        totalPages: pageData.totalPages || 0,
+        currentPage: pageData.currentPage || 1,
+        pageSize: pageData.pageSize || 12,
+        hasPrevious: pageData.hasPrevious || false,
+        hasNext: pageData.hasNext || false
+      };
+
+      console.log('📊 ProductStore New Pagination:', newPagination);
+
       set({
         products: response.products,
-        pagination: {
-          ...get().pagination,
-          totalItems: response.metadata.totalCount,
-          totalPages: response.metadata.totalPages
-        },
+        pagination: newPagination,
         loading: false
       });
       
@@ -130,24 +169,29 @@ export const useProductStore = create((set, get) => ({
    * Thêm sản phẩm vào giỏ hàng
    * @param {string} productId - ID của sản phẩm
    * @param {number} quantity - Số lượng sản phẩm
+   * @param {number} productSizeId - ID kích thước sản phẩm
    */
-  addCart: async (productId, quantity) => {
+  addCart: async (productId, quantity, productSizeId) => {
     try {
       set({ cartLoading: true, cartError: null, cartMessage: null });
-      
-      const response = await CartService.addToCart(productId, quantity);
-      
+
+      if (!productSizeId) {
+        throw new Error('Vui lòng chọn kích thước sản phẩm trước khi thêm vào giỏ.');
+      }
+
+      const response = await CartService.addToCart(productId, quantity, productSizeId);
+
       set({
         cartLoading: false,
         cartMessage: response.message
       });
-      
+
       return response;
     } catch (error) {
       console.error(`Error in ProductStore.addCart for product ID ${productId}:`, error);
-      set({ 
-        cartError: error.message || 'Có lỗi xảy ra khi thêm sản phẩm vào giỏ hàng', 
-        cartLoading: false 
+      set({
+        cartError: error.message || 'Có lỗi xảy ra khi thêm sản phẩm vào giỏ hàng',
+        cartLoading: false
       });
       throw error;
     }
@@ -183,7 +227,7 @@ export const useProductStore = create((set, get) => ({
         currentPage: pageNumber
       }
     }));
-    
+
     return await get().fetchProducts();
   },
 
@@ -200,6 +244,91 @@ export const useProductStore = create((set, get) => ({
       }
     }));
     
+    return await get().fetchProducts();
+  },
+
+  /**
+   * Cập nhật bộ lọc category
+   * @param {string} category - Category để lọc
+   */
+  updateCategoryFilter: async (category) => {
+    set(state => ({
+      filters: {
+        ...state.filters,
+        category: category || ''
+      },
+      pagination: {
+        ...state.pagination,
+        currentPage: 1 // Reset về trang đầu tiên khi thay đổi bộ lọc
+      }
+    }));
+
+    return await get().fetchProducts();
+  },
+
+  /**
+   * Cập nhật bộ lọc brand
+   * @param {string} brand - Brand để lọc
+   */
+  updateBrandFilter: async (brand) => {
+    set(state => ({
+      filters: {
+        ...state.filters,
+        brand: brand || ''
+      },
+      pagination: {
+        ...state.pagination,
+        currentPage: 1 // Reset về trang đầu tiên khi thay đổi bộ lọc
+      }
+    }));
+
+    return await get().fetchProducts();
+  },
+
+  /**
+   * Cập nhật bộ lọc giá
+   * @param {number} priceMin - Giá tối thiểu
+   * @param {number} priceMax - Giá tối đa
+   */
+  updatePriceFilter: async (priceMin, priceMax) => {
+    set(state => ({
+      filters: {
+        ...state.filters,
+        priceMin: priceMin || '',
+        priceMax: priceMax || ''
+      },
+      pagination: {
+        ...state.pagination,
+        currentPage: 1 // Reset về trang đầu tiên khi thay đổi bộ lọc
+      }
+    }));
+
+    return await get().fetchProducts();
+  },
+
+  /**
+   * Xóa tất cả bộ lọc
+   */
+  clearAllFilters: async () => {
+    set(state => ({
+      filters: {
+        ...state.filters,
+        category: '',
+        brand: '',
+        priceMin: '',
+        priceMax: '',
+        searchTerm: '',
+        categoryId: null,
+        trendId: null,
+        sortBy: 'ProductName',
+        sortAscending: true
+      },
+      pagination: {
+        ...state.pagination,
+        currentPage: 1
+      }
+    }));
+
     return await get().fetchProducts();
   },
 
@@ -226,7 +355,12 @@ export const useProductStore = create((set, get) => ({
         trendId: null,
         searchTerm: '',
         sortBy: 'ProductName',
-        sortAscending: true
+        sortAscending: true,
+        // New filters for the updated API
+        category: '',
+        brand: '',
+        priceMin: '',
+        priceMax: ''
       }
     });
   }

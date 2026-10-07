@@ -3,14 +3,16 @@ import { Link, useLocation } from 'react-router-dom';
 import { headerClass } from './data';
 import { FiShoppingCart, FiUser, FiLogOut, FiInfo, FiClock, FiTag } from 'react-icons/fi';
 import { useAuth } from '../../context/AuthContext';
+import { useLanguage } from '../../context/LanguageContext';
 import { message } from 'antd';
 import { useCartCount } from '@/hooks/useCart';
-
+import logo from '/src/assets/logogiay.png'
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [showUserMenu, setShowUserMenu] = useState(false);
   const location = useLocation();
   const { currentUser, isAuthenticated, logout } = useAuth();
+  const { language, toggleLanguage, t } = useLanguage();
   const [countItems] = useCartCount();
 
   useEffect(() => {
@@ -67,10 +69,11 @@ const Header = () => {
           {/* logo */}
           <Link to='/' className='flex items-center'>
             <div className='relative'>
-              <span className='absolute -top-2 -left-1 text-4xl'>🥛</span>
-              <h1 className='ml-9 text-2xl font-extrabold tracking-wide text-blue-700 sm:text-3xl'>
-                Milk<span className='text-blue-500'>Store</span>
-              </h1>
+              <span className='absolute -top-4 -left-1 text-4xl'><img src="https://res.cloudinary.com/dwbcqjupj/image/upload/v1790874890/logo_sfbplh.webp" className='h-16 w-18' alt="Zalo" /></span>
+              <h1 className='ml-16 text-2xl font-extrabold tracking-wide text-red-500 sm:text-3xl'>
+                I<span className='text-black'>NTEGRAL</span>
+                <br />
+              </h1> 
             </div>
           </Link>
 
@@ -78,35 +81,67 @@ const Header = () => {
           <nav className='flex items-center space-x-8'>
             <Link
               to='/trang-chu'
-              className={`${headerClass.nav} ${isActive('/') ? 'font-semibold text-blue-600' : ''}`}
+              className={`${headerClass.nav} ${isActive('/') || isActive('/trang-chu') ? 'font-semibold text-blue-600' : ''}`}
             >
-              Trang chủ
-            </Link>
-            <Link
-              to='/san-pham'
-              className={`${headerClass.nav} ${isActive('/product') ? 'font-semibold text-blue-600' : ''}`}
-            >
-              Sản phẩm
+              {t('Trang chủ', 'Home')}
             </Link>
             <Link
               to='/ve-chung-toi'
-              className={`${headerClass.nav} ${isActive('/about') ? 'font-semibold text-blue-600' : ''}`}
+              className={`${headerClass.nav} ${isActive('/ve-chung-toi') ? 'font-semibold text-blue-600' : ''}`}
             >
-              Về chúng tôi
+              {t('Giới thiệu', 'About Us')}
+            </Link>
+            <Link
+              to='/san-pham'
+              className={`${headerClass.nav} ${isActive('/san-pham') ? 'font-semibold text-blue-600' : ''}`}
+            >
+              {t('Sản phẩm', 'Products')}
+            </Link>
+            <Link
+              to='/giai-phap'
+              className={`${headerClass.nav} ${isActive('/giai-phap') ? 'font-semibold text-blue-600' : ''}`}
+            >
+              {t('Giải pháp', 'Solutions')}
+            </Link>
+            <Link
+              to='/du-an'
+              className={`${headerClass.nav} ${isActive('/du-an') ? 'font-semibold text-blue-600' : ''}`}
+            >
+              {t('Dự án', 'Projects')}
             </Link>
             <Link
               to='/lien-he'
-              className={`${headerClass.nav} ${isActive('/contact') ? 'font-semibold text-blue-600' : ''}`}
+              className={`${headerClass.nav} ${isActive('/lien-he') ? 'font-semibold text-blue-600' : ''}`}
             >
-              Liên hệ
+              {t('Liên hệ', 'Contact')}
             </Link>
           </nav>
 
           {/* buttons */}
           <div className='flex items-center space-x-4'>
+            {/* Language switch button */}
+            <button
+              onClick={toggleLanguage}
+              className='flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-gray-300 hover:border-blue-600 text-sm font-semibold transition-all bg-gray-50 hover:bg-white text-gray-800 shadow-sm cursor-pointer'
+              title={t('Chuyển sang Tiếng Anh', 'Switch to Vietnamese')}
+            >
+              {language === 'vi' ? (
+                <img
+                  src='https://cdn.gtranslate.net/flags/svg/vi.svg'
+                  alt='Tiếng Việt'
+                  className='w-5 h-5 object-contain rounded-full'
+                />
+              ) : (
+                <img
+                  src='https://res.cloudinary.com/dwbcqjupj/image/upload/v1791256316/Flag_of_the_Republic_of_China.svg_ke9zwd.webp'
+                  alt='Chinese'
+                  className='w-5 h-5 object-contain rounded-full'
+                />
+              )}
+          </button>
             {/* User profile button */}
             <div className="user-menu-container relative">
-              {isAuthenticated ? (
+              {/* {isAuthenticated ? (
                 <button
                   className='flex items-center gap-2 text-gray-700 hover:text-blue-600 transition-colors'
                   onClick={() => setShowUserMenu(!showUserMenu)}
@@ -133,7 +168,7 @@ const Header = () => {
                 >
                   <FiUser className='h-5 w-5' />
                 </Link>
-              )}
+              )} */}
 
               {/* User dropdown menu */}
               {showUserMenu && isAuthenticated && (
