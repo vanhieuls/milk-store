@@ -256,14 +256,14 @@ const Home = () => {
           <Carousel arrows infinite={true} autoplay={true} autoplaySpeed={3000}>
             {banners.map((banner, index) => (
               <div key={banner.id || index} className='relative overflow-hidden'>
-                <Link to={`/bo-suu-tap/${banner.id}`} className='block'>
+                {/* <Link to={`/bo-suu-tap/${banner.id}`} className='block'> */}
                   <img
                     src={banner.imageUrl}
                     alt={banner.alt || banner.name}
                     className='h-145 w-full '
                   />
                 
-                </Link>
+                {/* </Link> */}
               </div>
             ))}
           </Carousel>

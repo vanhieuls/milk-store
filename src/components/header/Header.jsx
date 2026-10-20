@@ -67,14 +67,16 @@ const Header = () => {
       >
         <div className='container mx-auto flex items-center justify-between'>
           {/* logo */}
-          <Link to='/' className='flex items-center'>
-            <div className='relative'>
-              <span className='absolute -top-4 -left-1 text-4xl'><img src="https://res.cloudinary.com/dwbcqjupj/image/upload/v1790874890/logo_sfbplh.webp" className='h-16 w-18' alt="Zalo" /></span>
-              <h1 className='ml-16 text-2xl font-extrabold tracking-wide text-red-500 sm:text-3xl'>
-                I<span className='text-black'>NTEGRAL</span>
-                <br />
-              </h1> 
+          <Link to='/' className='flex items-center gap-3'>
+            {/* Phần chứa ảnh logo */}
+            <div className='flex-shrink-0'>
+              <img 
+                src="https://res.cloudinary.com/dwbcqjupj/image/upload/v1790874890/logo_sfbplh.webp" 
+                className='h-14 w-auto object-contain' 
+                alt="Zalo" 
+              />
             </div>
+
           </Link>
 
           {/* navigation */}

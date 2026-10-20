@@ -40,7 +40,7 @@ const ProjectDetail = () => {
 
                 <div className='w-11/12 h-44 sm:h-48 rounded-xl overflow-hidden shadow-md border-2 border-white bg-white self-end transition-transform duration-300 hover:scale-105 hover:shadow-xl z-10'>
                   <img
-                    src={(project.images && project.images[1]) || 'https://res.cloudinary.com/dwbcqjupj/image/upload/v1790905834/Screenshot_2026-10-02_084125_ivkmum.png'}
+                    src={(project.images && project.images[1]) || project.image}
                     alt={`${project.title[language]} 2`}
                     className='w-full h-full object-cover'
                   />
@@ -48,7 +48,7 @@ const ProjectDetail = () => {
 
                 <div className='w-11/12 h-44 sm:h-48 rounded-xl overflow-hidden shadow-md border-2 border-white bg-white self-start ml-8 transition-transform duration-300 hover:scale-105 hover:shadow-xl'>
                   <img
-                    src={(project.images && project.images[2]) || 'https://res.cloudinary.com/dwbcqjupj/image/upload/v1790905836/Screenshot_2026-10-02_084526_-_Copy_o3m7uo.png'}
+                    src={(project.images && project.images[2]) || project.image}
                     alt={`${project.title[language]} 3`}
                     className='w-full h-full object-cover'
                   />

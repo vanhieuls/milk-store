@@ -8,15 +8,15 @@ import { MdLocalPhone } from 'react-icons/md'
 
 const urlImg = [
   {
-    img: 'https://res.cloudinary.com/dwbcqjupj/image/upload/v1790873768/ctyintegral_y3o1sq.jpg',
+    img: 'https://res.cloudinary.com/dwbcqjupj/image/upload/v1792475794/unnamed_itgrcb.webp',
     alt: 'image1',
   },
   {
-    img: 'https://res.cloudinary.com/dwbcqjupj/image/upload/v1790873768/ctyintegral_y3o1sq.jpg',
+    img: 'https://res.cloudinary.com/dwbcqjupj/image/upload/v1792475793/unnamed_2_jrytls.webp',
     alt: 'image2',
   },
   {
-    img: 'https://res.cloudinary.com/dwbcqjupj/image/upload/v1790873768/ctyintegral_y3o1sq.jpg',
+    img: 'https://res.cloudinary.com/dwbcqjupj/image/upload/v1792475794/unnamed_1_bksecl.webp',
     alt: 'image3',
   },
 ]
@@ -25,7 +25,7 @@ const Contact = () => {
     <div className='flex min-h-screen flex-col items-center justify-center'>
       <div className='w-full'>
         <img
-          src='https://unica.vn/media/imagesck/1628088346_cach-bat-tay-trong-giao-tiep.jpg?v=1628088346'
+          src='https://res.cloudinary.com/dwbcqjupj/image/upload/v1792476115/Gemini_Generated_Image_n40yg8n40yg8n40y_yduohh.png'
           alt='Liên hệ'
           className='w-full h-100 object-cover'
         />

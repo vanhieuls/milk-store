@@ -17,8 +17,7 @@ const SolutionsList = () => {
           </h1>
           <p className='mt-3 max-w-2xl mx-auto text-lg text-gray-600 sm:mt-4'>
             {t(
-              'Cung cấp các giải pháp toàn diện về mạng LAN/WAN, Wifi doanh nghiệp, Trung tâm dữ liệu và Bảo mật thông tin.',
-              'Providing comprehensive solutions for LAN/WAN networks, Enterprise Wifi, Data Centers, and Information Security.'
+              'Cung cấp trọn gói dịch vụ tư vấn, thiết kế và thi công hệ thống mạng LAN/Wi-Fi, camera an ninh, Data Center và điện nhẹ công nghiệp.',
             )}
           </p>
           <div className='mt-4 w-24 h-1 bg-blue-600 mx-auto rounded-full'></div>
