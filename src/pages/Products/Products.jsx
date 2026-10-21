@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { Loader2 } from 'lucide-react'
 import ProductService from '../../services/Product/ProductServices'
+import { useLanguage } from '../../context/LanguageContext'
 
 const Products = () => {
   const [products, setProducts] = useState([])
@@ -10,6 +11,7 @@ const Products = () => {
   const [loading, setLoading] = useState(true)
   const [loadingMore, setLoadingMore] = useState(false)
   const navigate = useNavigate()
+  const { t } = useLanguage()
 
   useEffect(() => {
     const loadAllProducts = async () => {
@@ -78,10 +80,10 @@ const Products = () => {
         />
         <div className='relative z-10 text-center px-4'>
           <h1 className='text-3xl md:text-5xl font-extrabold tracking-wider uppercase drop-shadow-md mb-2'>
-            SẢN PHẨM
+            {t('SẢN PHẨM', '產品設備')}
           </h1>
           <p className='text-xs md:text-sm font-medium text-gray-200'>
-            <Link to='/' className='hover:underline hover:text-blue-300'>Trang Chủ</Link> &gt; <span className='text-blue-400 font-semibold'>Sản Phẩm</span>
+            <Link to='/' className='hover:underline hover:text-blue-300'>{t('Trang Chủ', '首頁')}</Link> &gt; <span className='text-blue-400 font-semibold'>{t('Sản Phẩm', '產品列表')}</span>
           </p>
         </div>
       </div>
@@ -91,7 +93,7 @@ const Products = () => {
         {loading ? (
           <div className='flex flex-col items-center justify-center py-20'>
             <Loader2 className='w-10 h-10 text-blue-600 animate-spin mb-3' />
-            <p className='text-gray-500 font-medium'>Đang tải danh sách sản phẩm...</p>
+            <p className='text-gray-500 font-medium'>{t('Đang tải danh sách sản phẩm...', '產品列表載入中...')}</p>
           </div>
         ) : (
           <div className='space-y-16'>
@@ -121,16 +123,16 @@ const Products = () => {
                     {/* Specifications / Details Table */}
                     <div className='border-t border-b border-gray-200 divide-y divide-gray-100 text-sm'>
                       <div className='py-3 grid grid-cols-12 gap-2'>
-                        <span className='col-span-4 font-bold text-gray-800'>Tên sản phẩm</span>
+                        <span className='col-span-4 font-bold text-gray-800'>{t('Tên sản phẩm', '產品名稱')}</span>
                         <span className='col-span-8 text-gray-600'>{product.name}</span>
                       </div>
                       <div className='py-3 grid grid-cols-12 gap-2 bg-gray-50/50 px-1'>
-                        <span className='col-span-4 font-bold text-gray-800'>Mô tả thiết bị</span>
-                        <span className='col-span-8 text-gray-600 leading-relaxed'>{product.description || 'Chưa có thông tin chi tiết.'}</span>
+                        <span className='col-span-4 font-bold text-gray-800'>{t('Mô tả thiết bị', '設備規格描述')}</span>
+                        <span className='col-span-8 text-gray-600 leading-relaxed'>{product.description || t('Chưa có thông tin chi tiết.', '暫無詳細規格資訊。')}</span>
                       </div>
                       <div className='py-3 grid grid-cols-12 gap-2'>
-                        <span className='col-span-4 font-bold text-gray-800'>Trạng thái</span>
-                        <span className='col-span-8 text-green-600 font-semibold'>Sẵn hàng</span>
+                        <span className='col-span-4 font-bold text-gray-800'>{t('Trạng thái', '庫存狀態')}</span>
+                        <span className='col-span-8 text-green-600 font-semibold'>{t('Sẵn hàng', '現貨在庫')}</span>
                       </div>
                     </div>
                   </div>
@@ -141,7 +143,7 @@ const Products = () => {
                       onClick={() => navigate(`/san-pham/${product.id}`)}
                       className='px-6 py-2.5 bg-red-600 hover:bg-red-700 text-white font-bold text-sm rounded transition-colors shadow-sm cursor-pointer'
                     >
-                      Chi tiết
+                      {t('Chi tiết', '查看詳情')}
                     </button>
                     <a
                       href='https://zalo.me/09779796975'
@@ -149,7 +151,7 @@ const Products = () => {
                       rel='noopener noreferrer'
                       className='px-6 py-2.5 bg-blue-900 hover:bg-blue-950 text-white font-bold text-sm rounded transition-colors shadow-sm flex items-center gap-2'
                     >
-                      Mua Hàng
+                      {t('Mua Hàng', '立即諮詢/購買')}
                     </a>
                   </div>
                 </div>
@@ -162,7 +164,7 @@ const Products = () => {
         {loadingMore && (
           <div className='flex justify-center items-center py-8'>
             <Loader2 className='w-8 h-8 text-blue-600 animate-spin mr-2' />
-            <span className='text-sm text-gray-600 font-medium'>Đang tải thêm sản phẩm...</span>
+            <span className='text-sm text-gray-600 font-medium'>{t('Đang tải thêm sản phẩm...', '正在載入更多產品...')}</span>
           </div>
         )}
       </div>

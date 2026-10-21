@@ -1,8 +1,8 @@
 import React from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
-import { solutionsData, projectsData } from '../../data/staticData';
+import { solutionsData } from '../../data/staticData';
 import { useLanguage } from '../../context/LanguageContext';
-import { FiArrowLeft, FiLayers, FiCheckSquare, FiArrowRight } from 'react-icons/fi';
+import { FiArrowLeft, FiLayers } from 'react-icons/fi';
 
 const SolutionDetail = () => {
   const { slug } = useParams();
@@ -12,7 +12,7 @@ const SolutionDetail = () => {
   const solution = solutionsData.find((s) => s.slug === slug) || solutionsData[0];
   const otherSolutions = solutionsData.filter((s) => s.id !== solution.id);
 
-  // Format markdown-like text to paragraph blocks
+  // Format text to paragraph blocks
   const renderFormattedText = (text) => {
     if (!text) return null;
     return text.split('\n\n').map((paragraph, idx) => {
@@ -40,7 +40,7 @@ const SolutionDetail = () => {
           className='inline-flex items-center gap-2 text-sm font-medium text-gray-600 hover:text-blue-600 mb-8 transition-colors cursor-pointer bg-white px-4 py-2 rounded-lg shadow-sm border border-gray-200'
         >
           <FiArrowLeft className='w-4 h-4' />
-          {t('Quay lại Danh sách Giải pháp', 'Back to Solutions List')}
+          {t('Quay lại Danh sách Giải pháp', '返回解決方案列表')}
         </button>
 
         {/* Top-to-Bottom Article Layout */}
@@ -48,50 +48,47 @@ const SolutionDetail = () => {
           {/* Header */}
           <div className='border-b border-gray-100 pb-6 mb-8 text-center sm:text-left'>
             <span className='inline-block px-3.5 py-1.5 rounded-full text-xs font-semibold text-blue-700 bg-blue-50 border border-blue-100 mb-3'>
-              {solution.category[language]}
+              {solution.category[language] || solution.category.zh || solution.category.vi}
             </span>
             <h1 className='text-3xl sm:text-4xl font-extrabold text-gray-900 tracking-tight'>
-              {solution.title[language]}
+              {solution.title[language] || solution.title.zh || solution.title.vi}
             </h1>
             <p className='mt-3 text-lg text-gray-600 font-medium'>
-              {solution.description[language]}
+              {solution.description[language] || solution.description.zh || solution.description.vi}
             </p>
           </div>
 
           {/* Article Content */}
           <div className='prose max-w-none text-gray-700 mb-10'>
-            {renderFormattedText(solution.details[language])}
+            {renderFormattedText(solution.details[language] || solution.details.zh || solution.details.vi)}
           </div>
 
-          {/* Diagram / Solution Image */}
-          <div className='my-10 bg-gray-50 p-6 rounded-2xl border border-gray-100 text-center'>
-            <h4 className='text-sm font-bold text-gray-700 uppercase tracking-wider mb-4'>
-              {t('Sơ đồ kiến trúc & Hình ảnh giải pháp', 'Architecture Diagram & Solution Image')}
-            </h4>
-            <div className='max-w-3xl mx-auto h-[300px] sm:h-[400px] rounded-xl overflow-hidden shadow-md relative'>
+          {/* Solution Image Showcase */}
+          <div className='my-8 rounded-2xl overflow-hidden shadow-md border border-gray-100'>
+            <div className='w-full h-[320px] sm:h-[440px] relative bg-gray-100'>
               <img
                 src={solution.diagramImage || solution.image}
-                alt={solution.title[language]}
+                alt={solution.title[language] || solution.title.zh || solution.title.vi}
                 className='w-full h-full object-cover'
               />
             </div>
           </div>
 
           {/* Call to action */}
-          <div className='bg-blue-600 rounded-xl p-6 sm:p-8 text-white flex flex-col sm:flex-row items-center justify-between gap-4'>
+          <div className='bg-blue-600 rounded-xl p-6 sm:p-8 text-white flex flex-col sm:flex-row items-center justify-between gap-4 mt-8'>
             <div>
               <h4 className='text-xl font-bold'>
-                {t('Cần tư vấn giải pháp này cho doanh nghiệp?', 'Need this solution for your business?')}
+                {t('Cần tư vấn giải pháp này cho doanh nghiệp?', '需要為企業評估與導入此解決方案？')}
               </h4>
               <p className='text-blue-100 text-sm mt-1'>
-                {t('Đội ngũ kỹ sư Integral sẵn sàng hỗ trợ khảo sát và lên phương án', 'Integral engineer team is ready to support site survey and planning.')}
+                {t('Đội ngũ kỹ sư Integral sẵn sàng hỗ trợ khảo sát và lên phương án', 'Integral 工程師團隊隨時竭誠為您提供現場勘查與規劃建議')}
               </p>
             </div>
             <Link
               to='/lien-he'
               className='px-6 py-3 bg-white text-blue-600 font-bold rounded-lg hover:bg-blue-50 transition-all whitespace-nowrap shadow-md'
             >
-              {t('Đăng ký tư vấn', 'Register Consultation')}
+              {t('Đăng ký tư vấn', '立即預約諮詢')}
             </Link>
           </div>
         </div>
@@ -102,14 +99,14 @@ const SolutionDetail = () => {
             <div className='flex items-center gap-3'>
               <FiLayers className='w-6 h-6 text-blue-600' />
               <h2 className='text-2xl font-bold text-gray-900'>
-                {t('Các giải pháp khác', 'Other Solutions')}
+                {t('Các giải pháp khác', '其他解決方案')}
               </h2>
             </div>
             <Link
               to='/giai-phap'
               className='text-sm font-semibold text-blue-600 hover:text-blue-700 transition-colors'
             >
-              {t('Xem tất cả →', 'View All →')}
+              {t('Xem tất cả →', '查看全部 →')}
             </Link>
           </div>
 
@@ -120,19 +117,19 @@ const SolutionDetail = () => {
                 to={`/giai-phap/${item.slug}`}
                 className='group bg-white rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden border border-gray-100 flex flex-col'
               >
-                <div className='h-40 overflow-hidden bg-gray-100 relative'>
+                <div className='h-44 overflow-hidden bg-gray-100 relative'>
                   <img
                     src={item.image}
-                    alt={item.title[language]}
+                    alt={item.title[language] || item.title.zh || item.title.vi}
                     className='w-full h-full object-cover group-hover:scale-105 transition-transform duration-500'
                   />
                 </div>
                 <div className='p-4 flex-1 flex flex-col justify-between text-center'>
                   <span className='text-xs font-semibold text-blue-600 uppercase tracking-wider block mb-1'>
-                    {item.category[language]}
+                    {item.category[language] || item.category.zh || item.category.vi}
                   </span>
                   <h4 className='text-sm font-bold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2'>
-                    {item.title[language]}
+                    {item.title[language] || item.title.zh || item.title.vi}
                   </h4>
                 </div>
               </Link>

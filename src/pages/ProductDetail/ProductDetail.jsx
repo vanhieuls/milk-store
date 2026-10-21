@@ -11,6 +11,7 @@ import ErrorState from '../Products/Components/ErrorState'
 import NotFound from './Components/ProductNotFound'
 import { useScrollToTop } from '../../hooks/useScrollToTop'
 import ProductService from '../../services/Product/ProductServices'
+import { useLanguage } from '../../context/LanguageContext'
 import {
   InfoCircleOutlined,
   CheckCircleOutlined,
@@ -22,6 +23,7 @@ const ProductDetail = () => {
   useScrollToTop()
   const { id } = useParams()
   const navigate = useNavigate()
+  const { t } = useLanguage()
   const [product, setProduct] = useState(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
@@ -138,13 +140,13 @@ const ProductDetail = () => {
 
       {/* Breadcrumbs */}
       <nav className="flex items-center text-sm mb-6">
-        <Link to="/" className="text-gray-500 hover:text-blue-600">Trang chủ</Link>
+        <Link to="/" className="text-gray-500 hover:text-blue-600">{t('Trang chủ', '首頁')}</Link>
         <span className="mx-2 text-gray-400">/</span>
         <Link
           to="/san-pham"
           className="text-gray-500 hover:text-blue-600"
         >
-          Sản phẩm
+{t('Sản phẩm', '產品列表')}
         </Link>
         <span className="mx-2 text-gray-400">/</span>
         <span className="font-medium text-gray-800 truncate">{product.name}</span>
@@ -161,9 +163,9 @@ const ProductDetail = () => {
       {/* SẢN PHẨM LIÊN QUAN */}
       <div className="mt-12">
         <h2 className="text-2xl font-bold text-gray-900 mb-6 tracking-tight uppercase border-l-4 border-blue-600 pl-3">
-          SẢN PHẨM LIÊN QUAN
+          {t('SẢN PHẨM LIÊN QUAN', '相關推薦產品')}
         </h2>
-        <RelatedProducts product={product} title="SẢN PHẨM LIÊN QUAN" />
+        <RelatedProducts product={product} title={t('SẢN PHẨM LIÊN QUAN', '相關推薦產品')} />
       </div>
     </div>
   )

@@ -1,10 +1,9 @@
+import React from 'react'
 import { Carousel } from 'antd'
 import { FaCalendarAlt } from 'react-icons/fa'
-import {
-  IoLocationSharp,
-} from 'react-icons/io5'
-
+import { IoLocationSharp } from 'react-icons/io5'
 import { MdLocalPhone } from 'react-icons/md'
+import { useLanguage } from '../../context/LanguageContext'
 
 const urlImg = [
   {
@@ -20,13 +19,16 @@ const urlImg = [
     alt: 'image3',
   },
 ]
+
 const Contact = () => {
+  const { t } = useLanguage()
+
   return (
     <div className='flex min-h-screen flex-col items-center justify-center'>
       <div className='w-full'>
         <img
           src='https://res.cloudinary.com/dwbcqjupj/image/upload/v1792476115/Gemini_Generated_Image_n40yg8n40yg8n40y_yduohh.png'
-          alt='Liên hệ'
+          alt={t('Liên hệ', '聯絡我們')}
           className='w-full h-100 object-cover'
         />
       </div>
@@ -40,7 +42,7 @@ const Contact = () => {
               Integral Technology Viet Nam Co.,Ltd
             </h2>
             <p className='mb-4 text-5xl font-semibold text-blue-900'>
-              LIÊN PHƯỜNG
+              {t('LIÊN PHƯỜNG', '蓮坊辦事處')}
             </p>
             <hr className='w-40 border-t-5 p-2' />
             <div className='space-y-3 text-gray-700'>
@@ -51,11 +53,11 @@ const Contact = () => {
 
               <p className='flex items-center font-semibold'>
                 <FaCalendarAlt className='mr-2 size-5 text-red-500' />
-                Thời gian làm việc: 8:00 - 17:00 | Thứ 2 - Thứ 7
+                {t('Thời gian làm việc: 8:00 - 17:00 | Thứ 2 - Thứ 7', '營業時間：週一至週六 8:00 - 17:00')}
               </p>
               <p className='flex items-center font-semibold'>
                 <IoLocationSharp className='mr-2 size-5 text-green-500' />
-                299 Liên Phường, Long Trường, TP.HCM
+                {t('299 Liên Phường, Long Trường, TP.HCM', '胡志明市隆長坊蓮坊路299號')}
               </p>
             </div>
 
@@ -67,6 +69,7 @@ const Contact = () => {
                 allowFullScreen
                 loading='lazy'
                 referrerPolicy='no-referrer-when-downgrade'
+                title='Google Maps'
               ></iframe>
             </div>
           </div>
@@ -93,9 +96,9 @@ const Contact = () => {
               <div className='flex items-center font-semibold text-white'>
                 <IoLocationSharp className='mr-2 size-15 text-white shrink-0' />
                 <div className='mt-5 flex flex-col'>
-                  <span className='text-2xl'>299 Liên Phường</span>
+                  <span className='text-2xl'>{t('299 Liên Phường', '蓮坊路299號')}</span>
                   <span className='text-xl'>
-                    Long Trường, Thành phố Hồ Chí Minh
+                    {t('Long Trường, Thành phố Hồ Chí Minh', '胡志明市隆長坊')}
                   </span>
                 </div>
               </div>

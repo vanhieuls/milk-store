@@ -49,7 +49,7 @@ const Header = () => {
     try {
       const result = await logout();
       if (result.success) {
-        message.success('Đăng xuất thành công!');
+        message.success(t('Đăng xuất thành công!', '登出成功！'));
       }
     } catch (error) {
       console.error('Lỗi đăng nhập:', error);
@@ -85,37 +85,37 @@ const Header = () => {
               to='/trang-chu'
               className={`${headerClass.nav} ${isActive('/') || isActive('/trang-chu') ? 'font-semibold text-blue-600' : ''}`}
             >
-              {t('Trang chủ', 'Home')}
+              {t('Trang chủ', '首頁')}
             </Link>
             <Link
               to='/ve-chung-toi'
               className={`${headerClass.nav} ${isActive('/ve-chung-toi') ? 'font-semibold text-blue-600' : ''}`}
             >
-              {t('Giới thiệu', 'About Us')}
+              {t('Giới thiệu', '關於我們')}
             </Link>
             <Link
               to='/san-pham'
               className={`${headerClass.nav} ${isActive('/san-pham') ? 'font-semibold text-blue-600' : ''}`}
             >
-              {t('Sản phẩm', 'Products')}
+              {t('Sản phẩm', '產品介紹')}
             </Link>
             <Link
               to='/giai-phap'
               className={`${headerClass.nav} ${isActive('/giai-phap') ? 'font-semibold text-blue-600' : ''}`}
             >
-              {t('Giải pháp', 'Solutions')}
+              {t('Giải pháp', '解決方案')}
             </Link>
             <Link
               to='/du-an'
               className={`${headerClass.nav} ${isActive('/du-an') ? 'font-semibold text-blue-600' : ''}`}
             >
-              {t('Dự án', 'Projects')}
+              {t('Dự án', '工程案例')}
             </Link>
             <Link
               to='/lien-he'
               className={`${headerClass.nav} ${isActive('/lien-he') ? 'font-semibold text-blue-600' : ''}`}
             >
-              {t('Liên hệ', 'Contact')}
+              {t('Liên hệ', '聯絡我們')}
             </Link>
           </nav>
 
@@ -125,7 +125,7 @@ const Header = () => {
             <button
               onClick={toggleLanguage}
               className='flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-gray-300 hover:border-blue-600 text-sm font-semibold transition-all bg-gray-50 hover:bg-white text-gray-800 shadow-sm cursor-pointer'
-              title={t('Chuyển sang Tiếng Anh', 'Switch to Vietnamese')}
+              title={t('Chuyển sang Tiếng Trung', '切換為越南語')}
             >
               {language === 'vi' ? (
                 <img
@@ -136,7 +136,7 @@ const Header = () => {
               ) : (
                 <img
                   src='https://res.cloudinary.com/dwbcqjupj/image/upload/v1791256316/Flag_of_the_Republic_of_China.svg_ke9zwd.webp'
-                  alt='Chinese'
+                  alt='繁體中文'
                   className='w-5 h-5 object-contain rounded-full'
                 />
               )}
@@ -185,7 +185,7 @@ const Header = () => {
                     onClick={() => setShowUserMenu(false)}
                   >
                     <FiInfo className="mr-2 h-4 w-4" />
-                    Thông tin cá nhân
+                    {t('Thông tin cá nhân', '個人資訊')}
                   </Link>
                   <Link
                     to="/don-hang"
@@ -193,7 +193,7 @@ const Header = () => {
                     onClick={() => setShowUserMenu(false)}
                   >
                     <FiClock className="mr-2 h-4 w-4" />
-                    Đơn hàng
+                    {t('Đơn hàng', '訂單記錄')}
                   </Link>
                   <Link
                     to="/ma-giam-gia"
@@ -201,14 +201,14 @@ const Header = () => {
                     onClick={() => setShowUserMenu(false)}
                   >
                     <FiTag className="mr-2 h-4 w-4" />
-                    Mã giảm giá
+                    {t('Mã giảm giá', '優惠券')}
                   </Link>
                   <button
                     onClick={handleLogout}
                     className="flex w-full items-center px-4 py-2 text-sm text-red-600 hover:bg-red-50"
                   >
                     <FiLogOut className="mr-2 h-4 w-4" />
-                    Đăng xuất
+                    {t('Đăng xuất', '登出')}
                   </button>
                 </div>
               )}

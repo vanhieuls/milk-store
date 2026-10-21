@@ -3,7 +3,8 @@ import CategoryService from '@services/Category/CategoryServices'
 import { Carousel } from 'antd'
 import React, { useEffect, useState } from 'react'
 import { HiOutlineArrowRight } from 'react-icons/hi2'
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
+import { useLanguage } from '../../context/LanguageContext';
 
 // Fallback banner images in case API fails
 const fallbackBanners = [
@@ -197,6 +198,7 @@ const horizontalImages = [
 ]
 
 const Home = () => {
+  const { language, t } = useLanguage()
   const [products, setProducts] = useState([])
   const [banners, setBanners] = useState([])
   const [loading, setLoading] = useState(false)
@@ -249,7 +251,7 @@ const Home = () => {
           <div className='h-145 w-full flex items-center justify-center bg-gray-200'>
             <div className='text-center'>
               <div className='h-12 w-12 animate-spin rounded-full border-t-2 border-b-2 border-blue-500 mx-auto mb-4'></div>
-              <p className='text-gray-600'>Đang tải banner...</p>
+              <p className='text-gray-600'>{t('Đang tải banner...', '橫幅載入中...')}</p>
             </div>
           </div>
         ) : (
@@ -284,10 +286,10 @@ const Home = () => {
       <div className='mt-10'>
         <div className='flex w-full flex-col items-center justify-center p-6 md:p-10 text-blue-900'>
           <p className='text-3xl md:text-5xl font-extrabold tracking-tight uppercase text-center'>
-            HÀNG HÓA
+            {t('HÀNG HÓA', '產品設備')}
           </p>
           <p className='text-gray-500 text-sm md:text-base mt-2 font-medium text-center'>
-            Kéo chuột hoặc vuốt sang hai bên để khám phá các sản phẩm Mới nhất
+            {t('Kéo chuột hoặc vuốt sang hai bên để khám phá các sản phẩm Mới nhất', '左右滑動或拖曳以瀏覽最新產品與設備')}
           </p>
 
           {/* Horizontal Scrollable Drag Carousel */}
@@ -319,7 +321,7 @@ const Home = () => {
                     <div className='p-3 text-center'>
                       <h4 className='text-sm font-bold text-gray-800 truncate'>{product.title || product.alt}</h4>
                       <span className='text-xs font-semibold text-blue-600 mt-1 block'>
-                        {product.price ? `${product.price.toLocaleString()} VNĐ` : 'Liên hệ báo giá'}
+                        {product.price ? `${product.price.toLocaleString()} VNĐ` : t('Liên hệ báo giá', '歡迎洽詢報價')}
                       </span>
                     </div>
                   </Link>
@@ -337,10 +339,10 @@ const Home = () => {
       <div className='mt-10'>
         <div className='flex w-full justify-between p-10 text-blue-900'>
           <p className='whitespace-nowrap text-5xl font-semibold'>
-  Đổi mới <br /> cập nhật
+  {language === 'zh' ? <>創新突破 <br /> 技術升級</> : <>Đổi mới <br /> cập nhật</>}
 </p>
           <p className='p-4 text-xl italic'>
-            Không ngừng đổi mới, cập nhật công nghệ và nâng cao chuyên môn<br /> để mang đến những giải pháp hạ tầng điện nhẹ, mạng và máy chủ tiên tiến, chất lượng và phù hợp.
+            {t('Không ngừng đổi mới, cập nhật công nghệ và nâng cao chuyên môn để mang đến những giải pháp hạ tầng điện nhẹ, mạng và máy chủ tiên tiến, chất lượng và phù hợp.', '持續創新、導入尖端科技並提升專業素養，為您提供先進、可靠且契合需求的弱電、網路及伺服器基礎設施整體方案。')}
           </p>
         </div>
         <div className='grid grid-cols-4 overflow-x-hidden'>
@@ -362,11 +364,11 @@ const Home = () => {
       <div className='mt-5 mb-5 flex flex-col items-center justify-center'>
         <div className='mb-4 flex w-full justify-between p-10 text-blue-900'>
           <p className='text-5xl font-semibold'>
-            Bứt tốc đường truyền <br /> Gọn gàng mọi không gian
+            {language === 'zh' ? <>極速網路傳輸 <br /> 整潔專業空間</> : <>Bứt tốc đường truyền <br /> Gọn gàng mọi không gian</>}
           </p>
           <p className='p-4 text-xl italic'>
-            Giải pháp thi công hệ thống mạng chuyên nghiệp, tối ưu băng thông <br />{' '}
-            và đảm bảo thẩm mỹ tuyệt đối cho văn phòng, nhà xưởng của bạn.
+            {t('Giải pháp thi công hệ thống mạng chuyên nghiệp, tối ưu băng thông và đảm bảo thẩm mỹ tuyệt đối cho văn phòng, nhà xưởng của bạn.', '專業級網路系統整合方案，全面優化傳輸頻寬，為您的辦公室與廠房營造極致美觀的整線環境。')}
+
           </p>
         </div>
         {/* <div className='grid w-full grid-cols-3 gap-0 border-gray-200'> */}

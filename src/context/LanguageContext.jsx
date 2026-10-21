@@ -4,7 +4,9 @@ const LanguageContext = createContext();
 
 export const LanguageProvider = ({ children }) => {
   const [language, setLanguage] = useState(() => {
-    return localStorage.getItem('app_lang') || 'vi';
+    const saved = localStorage.getItem('app_lang');
+    if (saved === 'zh' || saved === 'vi') return saved;
+    return 'vi';
   });
 
   useEffect(() => {
@@ -12,11 +14,11 @@ export const LanguageProvider = ({ children }) => {
   }, [language]);
 
   const toggleLanguage = () => {
-    setLanguage(prev => (prev === 'vi' ? 'en' : 'vi'));
+    setLanguage(prev => (prev === 'vi' ? 'zh' : 'vi'));
   };
 
-  const t = (viText, enText) => {
-    return language === 'vi' ? viText : enText;
+  const t = (viText, zhText) => {
+    return language === 'zh' ? (zhText || viText) : viText;
   };
 
   return (
