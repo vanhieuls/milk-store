@@ -45,7 +45,7 @@ const About = () => {
     },
     {
       id: 3,
-      name: 'NGUYỄN VĂN C',
+      name: 'ĐẶNG THỊ PHƯƠNG',
       title: t('KẾ TOÁN', '財務主管'),
       bio: t(
         'Rà soát nhu cầu, đề xuất và tối ưu quy trình tài chính phù hợp với mô hình hoạt động của doanh nghiệp.',
