@@ -94,7 +94,7 @@ const AppRoutes = () => {
     <Layout>
       <Routes>
         {/* Auth routes - redirect to home if already logged in */}
-        <Route path='/dang-nhap' element={
+        {/* <Route path='/dang-nhap' element={
           <AuthRoute>
             <Login />
           </AuthRoute>
@@ -105,7 +105,7 @@ const AppRoutes = () => {
           </AuthRoute>
         } />
         <Route path='/quen-mat-khau' element={<ForgotPassword />} />
-        <Route path='/reset-password' element={<ResetPassword />} />
+        <Route path='/reset-password' element={<ResetPassword />} /> */}
 
         {/* Public routes */}
         <Route path='/' element={<Home />} />
@@ -116,8 +116,8 @@ const AppRoutes = () => {
         <Route path='/pagination-test' element={<PaginationTest />} />
         <Route path='/lien-he' element={<Contact />} />
         <Route path="/san-pham/:id" element={<ProductDetail />} />
-        <Route path="/bo-suu-tap/:collectionId" element={<CollectionDetail />} />
-        <Route path='/chinh-sach-van-chuyen' element={<TransferPolicy />} />
+        {/* <Route path="/bo-suu-tap/:collectionId" element={<CollectionDetail />} /> */}
+        {/* <Route path='/chinh-sach-van-chuyen' element={<TransferPolicy />} />
         <Route path='/huong-dan-mua-hang' element={<PurchaseGuide />} />
         <Route path='/chinh-sach-doi-tra' element={<ReturnPolicy />} />
         <Route path='/hinh-thuc-thanh-toan' element={<PaymentMethods/>}/>
@@ -125,9 +125,9 @@ const AppRoutes = () => {
           <ProtectedRoute>
             <Order />
           </ProtectedRoute>
-        } />
+        } /> */}
         {/* Protected routes - require authentication */}
-        <Route path='/thanh-toan' element={
+        {/* <Route path='/thanh-toan' element={
           <ProtectedRoute>
             <Checkout />
           </ProtectedRoute>
@@ -152,7 +152,7 @@ const AppRoutes = () => {
           <ProtectedRoute>
             <Voucher />
           </ProtectedRoute>
-        } />
+        } /> */}
 
         <Route path='/du-an' element={<ProjectsList />} />
         <Route path='/du-an/:slug' element={<ProjectDetail />} />

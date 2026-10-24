@@ -11,27 +11,21 @@ const fallbackBanners = [
   {
     id: '1',
     name: 'Banner 1',
-    imageUrl: 'https://res.cloudinary.com/dwbcqjupj/image/upload/v1790873768/ctyintegral_y3o1sq.jpg',
+    imageUrl: 'https://res.cloudinary.com/dwbcqjupj/image/upload/v1792568317/Screenshot_2026-10-21_143447_a5p8mm.png',
     alt: 'image1',
   },
   {
     id: '2',
     name: 'Banner 2',
-    imageUrl: 'https://res.cloudinary.com/dwbcqjupj/image/upload/v1790873768/ctyintegral_y3o1sq.jpg',
+    imageUrl: 'https://res.cloudinary.com/dwbcqjupj/image/upload/v1792568317/Screenshot_2026-10-21_143436_nf7ux9.png',
     alt: 'image2',
   },
   {
     id: '3',
     name: 'Banner 3',
-    imageUrl: 'https://res.cloudinary.com/dwbcqjupj/image/upload/v1790873768/ctyintegral_y3o1sq.jpg',
+    imageUrl: 'https://res.cloudinary.com/dwbcqjupj/image/upload/v1792568318/Screenshot_2026-10-21_143456_mooyx9.png',
     alt: 'image3',
-  },
-  {
-    id: '4',
-    name: 'Banner 4',
-    imageUrl: 'https://res.cloudinary.com/dwbcqjupj/image/upload/v1790873768/ctyintegral_y3o1sq.jpg',
-    alt: 'image4',
-  },
+  }
 ]
 
 const awards = [

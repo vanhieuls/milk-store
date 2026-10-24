@@ -181,14 +181,14 @@ const TransferPolicy = () => {
                   <div className="flex items-center">
                     <div className="bg-white p-1.5 rounded-full mr-3">
                       <FaCheckCircle className="text-green-500" />
-                    </div>
-                    <span>Zalo: 09777699113 - MilkStore</span>
+                    </div>  
+                    <span>Zalo:  - MilkStore</span>
                   </div>
                   <div className="flex items-center">
                     <div className="bg-white p-1.5 rounded-full mr-3">
                       <FaPhone className="text-blue-500" />
                     </div>
-                    <span>Hotline: <span className="font-semibold">032 8998 113</span></span>
+                    <span>Hotline: <span className="font-semibold"></span></span>
                   </div>
                 </div>
                 <p className="mt-4 italic text-blue-700 text-center">

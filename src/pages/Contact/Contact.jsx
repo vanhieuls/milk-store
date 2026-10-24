@@ -48,7 +48,7 @@ const Contact = () => {
             <div className='space-y-3 text-gray-700'>
               <p className='flex items-center font-semibold'>
                 <MdLocalPhone className='mr-2 size-5 text-blue-500' />
-                09779796975
+                0906979505
               </p>
 
               <p className='flex items-center font-semibold'>

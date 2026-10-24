@@ -22,7 +22,7 @@ const ProductInfo = ({ product }) => {
 
       <div className='mt-8'>
         <a
-          href='https://zalo.me/09779796975'
+          href='https://zalo.me/0906979505'
           target='_blank'
           rel='noopener noreferrer'
           className='inline-flex w-full items-center justify-center rounded-lg bg-blue-600 px-6 py-3.5 font-semibold text-white hover:bg-blue-700 transition-all shadow-md gap-3 text-base'

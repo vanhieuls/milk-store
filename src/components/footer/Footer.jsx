@@ -120,10 +120,10 @@ const Footer = () => {
                   <FiMail className='w-4 h-4' />
                 </div>
                 <a
-                  href='mailto:sales@pat.com.vn'
+                  href='mailto:tubui@integral-firetek.com'
                   className='hover:text-blue-600 transition-colors font-medium'
                 >
-                  sales@pat.com.vn
+                  tubui@integral-firetek.com
                 </a>
               </div>
 
@@ -132,12 +132,12 @@ const Footer = () => {
                   <FiGlobe className='w-4 h-4' />
                 </div>
                 <a
-                  href='https://pat.com.vn'
+                  href='integral-tech.com.vn'
                   target='_blank'
                   rel='noopener noreferrer'
                   className='hover:text-blue-600 transition-colors font-medium'
                 >
-                  integral.com.vn
+                  integral-tech.com.vn
                 </a>
               </div>
             </div>

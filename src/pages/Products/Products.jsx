@@ -146,7 +146,7 @@ const Products = () => {
                       {t('Chi tiết', '查看詳情')}
                     </button>
                     <a
-                      href='https://zalo.me/09779796975'
+                      href='https://zalo.me/0906979505'
                       target='_blank'
                       rel='noopener noreferrer'
                       className='px-6 py-2.5 bg-blue-900 hover:bg-blue-950 text-white font-bold text-sm rounded transition-colors shadow-sm flex items-center gap-2'
